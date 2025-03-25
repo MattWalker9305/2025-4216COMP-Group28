@@ -1,4 +1,4 @@
-import matt_walker_cw_q1 as mw
+import matt_walker_cw as mw
 import os
 
 menu_choice = True
