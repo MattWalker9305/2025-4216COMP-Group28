@@ -1,10 +1,6 @@
 import pandas as pd
-import csv 
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import numpy as np
-import datetime as dt
-from dataclasses import dataclass
 import classes_for_dataset as cfd
 
 def team_season_points():
@@ -16,19 +12,18 @@ def team_season_points():
     teams = cfd.read_file_to_array("datasets/teams.csv", cfd.Team)
     for row in teams:
            if row.name == selected_team:
-               selected_team = row.teamID
+               selected_team_id = row.teamID
                team_not_found = False
                break
 
     if team_not_found:
         print("no team found")
     else:
-        print(selected_team)
         match_results = []
 
-        ts = cfd.read_file_to_array("datasets/teamstats.csv", cfd.TeamStatistic)
-        for row in ts:
-            if row.teamID == selected_team and selected_year == row.season:
+        team_statistics = cfd.read_file_to_array("datasets/teamstats.csv", cfd.TeamStatistic)
+        for row in team_statistics:
+            if row.teamID == selected_team_id and selected_year == row.season:
                 match_results.append((row.date, row.result))
         
         match_results.sort(key=lambda x: x[0])
@@ -46,6 +41,7 @@ def team_season_points():
         ax.plot(data['date'], data['cumulative_points'], 'go:')
         ax.tick_params(axis='x', labelrotation=90)
 
+        ax.set_title(f"Points scored by {selected_team} over a season")
         ax.set_xlabel('Date')
         ax.set_ylabel('Points')
 
