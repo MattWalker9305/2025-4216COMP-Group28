@@ -6,7 +6,9 @@ menu_choice = True
 while menu_choice:
 
     os.system('cls')
-    choice = int(input("choose application: "))
+    choice = int(input("1.) exit"+
+                       "\n2.) team points over a season"+
+                       "\nchoose application: "))
 
     match choice:
         case 1:
