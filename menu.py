@@ -14,5 +14,3 @@ while menu_choice:
             exit
         case 2:
             mw.team_season_points()
-
-            
