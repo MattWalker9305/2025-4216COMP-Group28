@@ -3,6 +3,7 @@ import csv
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import numpy as np
+import datetime as dt
 
 team_not_found = True
 
@@ -47,13 +48,13 @@ else:
     data['cumulative_points'] = data['points'].cumsum()
 
     fig, ax = plt.subplots()
-    ax.plot(data['date'], data['cumulative_points'], 'mo:')
-    ax.tick_params(axis='x', labelrotation=45)
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%d.%m.%Y"))
+    ax.set_xticks(data['date'])
+    ax.plot(data['date'], data['cumulative_points'], 'go:')
+    ax.tick_params(axis='x', labelrotation=90)
+
     ax.set_xlabel('Date')
     ax.set_ylabel('Points')
 
-    ax.xaxis.set_major_formatter(mdates.DateFormatter("%d.%m.%Y"))
-    ax.xaxis.set_major_locator(mdates.DayLocator(interval=5))
-
-    plt.show()
     print(data)
+    plt.show()
