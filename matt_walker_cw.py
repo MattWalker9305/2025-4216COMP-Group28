@@ -5,25 +5,7 @@ import matplotlib.dates as mdates
 import numpy as np
 import datetime as dt
 from dataclasses import dataclass
-
-@dataclass
-class TeamStatistic:
-    gameID: str
-    teamID: str
-    season: str
-    date: dt.datetime
-    location: str
-    goals: int
-    xGoals: float
-    shots: int
-    shotsOnTarget: int
-    deep: int
-    ppda: float
-    fouls: int
-    corners: int
-    yellowCards: int
-    redCards: int
-    result: str
+import classes_for_dataset as cfd
 
 def team_season_points():
     team_not_found = True
@@ -31,32 +13,24 @@ def team_season_points():
     selected_team = input("Enter team: ")
     selected_year = input("Enter year: ")
 
-    with open('datasets/teams.csv', 'r') as f:
-        csv_reader = csv.reader(f)
-        next(csv_reader)
-        for row in csv_reader:
-            team = row[1]
-            team_id = row[0]
-            if team == selected_team:
-                team_id = row[0]
-                team_not_found = False
-                break
+    teams = cfd.read_file_to_array("datasets/teams.csv", cfd.Team)
+    for row in teams:
+           if row.name == selected_team:
+               selected_team = row.teamID
+               team_not_found = False
+               break
 
     if team_not_found:
         print("no team found")
     else:
+        print(selected_team)
         match_results = []
-    
-        with open('datasets/teamstats.csv', 'r') as f:
-            reader = csv.DictReader(f)
-            ts = [TeamStatistic(**row) for row in reader]
-            
-            for row in ts:
-                if row.teamID == team_id and selected_year == row.season:
-                    match_results.append((row.date, row.result))
-        
-        print (ts[3])
 
+        ts = cfd.read_file_to_array("datasets/teamstats.csv", cfd.TeamStatistic)
+        for row in ts:
+            if row.teamID == selected_team and selected_year == row.season:
+                match_results.append((row.date, row.result))
+        
         match_results.sort(key=lambda x: x[0])
 
         data = pd.DataFrame(match_results, columns=['date', 'result'])
