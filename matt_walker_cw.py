@@ -1,6 +1,7 @@
 import pandas as pd
 import csv 
-import matplotlib as plt
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import numpy as np
 
 team_not_found = True
@@ -39,11 +40,20 @@ else:
     match_results.sort(key=lambda x: x[0])
 
     data = pd.DataFrame(match_results, columns=['date', 'result'])
-    data['date'] = data['date'].apply(lambda x: x.split(' ')[0]) 
-    data['date'] = pd.to_datetime(data['date'], format='%Y-%m-%d')
+    data['date'] = pd.to_datetime(data['date'])
     
     data['points'] = data['result'].map({'W': 3, 'D': 1, 'L': 0})
    
     data['cumulative_points'] = data['points'].cumsum()
-   
+
+    fig, ax = plt.subplots()
+    ax.plot(data['date'], data['cumulative_points'], 'mo:')
+    ax.tick_params(axis='x', labelrotation=45)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Points')
+
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%d.%m.%Y"))
+    ax.xaxis.set_major_locator(mdates.DayLocator(interval=5))
+
+    plt.show()
     print(data)
