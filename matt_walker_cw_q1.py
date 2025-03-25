@@ -4,6 +4,26 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import numpy as np
 import datetime as dt
+from dataclasses import dataclass
+
+@dataclass
+class TeamStatistic:
+    gameID: str
+    teamID: str
+    season: str
+    date: dt.datetime
+    location: str
+    goals: int
+    xGoals: float
+    shots: int
+    shotsOnTarget: int
+    deep: int
+    ppda: float
+    fouls: int
+    corners: int
+    yellowCards: int
+    redCards: int
+    result: str
 
 def team_season_points():
     team_not_found = True
@@ -28,17 +48,15 @@ def team_season_points():
         match_results = []
     
         with open('datasets/teamstats.csv', 'r') as f:
-            teamstats = csv.reader(f)
-            next(teamstats)
+            reader = csv.DictReader(f)
+            ts = [TeamStatistic(**row) for row in reader]
             
-            for row in teamstats:
-                match_team_id = row[1]
-                result = row[15]
-                season = row[2]
-                date = row[3]
-                if match_team_id == team_id and selected_year == season:
-                    match_results.append((date, result))
+            for row in ts:
+                if row.teamID == team_id and selected_year == row.season:
+                    match_results.append((row.date, row.result))
         
+        print (ts[3])
+
         match_results.sort(key=lambda x: x[0])
 
         data = pd.DataFrame(match_results, columns=['date', 'result'])
