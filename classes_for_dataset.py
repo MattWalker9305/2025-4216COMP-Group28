@@ -27,7 +27,7 @@ class Team:
     name: str
 
 @dataclass
-class appearance:
+class Appearance:
     gameID: str
     playerID: str
     goals: int
@@ -49,7 +49,7 @@ class appearance:
     leagueID: str
 
 @dataclass
-class game:
+class Game:
     gameID: str
     leagueID: str
     season: str
@@ -86,17 +86,17 @@ class game:
     PSCA: float
 
 @dataclass
-class league:
+class League:
     leagueID: str
     name: str
     understatNotation: str
 
 @dataclass
-class player:
+class Player:
     playerID: str
     name: str
 
-class shot:
+class Shot:
     gameID: str
     shooterID: str
     assisterID: str
@@ -108,6 +108,23 @@ class shot:
     xGoal: float
     positionX: float
     positionY: float
+
+#
+#Use this function instead of reading in the file line by line
+#this function will increase preformance and ease of use
+# 
+#file_path should be the relative path e.g. 'datasets/appearances.csv' 
+#
+#requested_class should be the name of the objects you want in your array, e.g. Appearance
+#!!!THIS SHOULD NOT HAVE "" AROUND IT!!!
+#
+#to use this method in your program be sure to import at the top of your program
+#import classes_for_dataset as cfd
+#then call the function
+#cfd.read_file_to_array('datasets/appearances.csv', Appearance)
+#
+#!!!DO NOT ALTER CODE BELOW!!!
+#
 
 def read_file_to_array(file_path:str, requested_class:object):
     with open(file_path, 'r') as f:
