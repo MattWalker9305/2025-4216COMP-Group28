@@ -1,5 +1,6 @@
 import matt_walker_cw as mw
 import Callum_C
+import ShaunQ1
 import os
 
 menu_choice = True
@@ -7,9 +8,10 @@ menu_choice = True
 while menu_choice:
 
     os.system('cls')
-    choice = int(input("1.) exit"+
+    choice = int(input("1.) exit"
                        "\n2.) team points over a season"
                        "\n3.) team home and away goals scored in a season"
+                       "\n4.) Player goals over a season"
                        "\nchoose application: "))
 
     match choice:
@@ -20,3 +22,5 @@ while menu_choice:
             mw.team_season_points()
         case 3:
             Callum_C.callum_C1()
+        case 4:
+            ShaunQ1.ShaunQ1Program()
