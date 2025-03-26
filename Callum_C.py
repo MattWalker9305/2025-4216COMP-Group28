@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
 
 team_not_found = True
 
@@ -37,6 +38,24 @@ with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
                     homeGoals.append(home_goals)
                 elif away_team_id==team_id and requested_year==season:
                     awayGoals.append(away_goals)
+
+        total_home_goals = sum(homeGoals)
+        total_away_goals = sum(awayGoals)
+
+    
+    # Create bar chart
+        labels = ['Goals Scored At Home', 'Goals Scored Away']
+        values = [total_home_goals, total_away_goals]
+        
+        plt.bar(labels, values, color=['blue', 'red'])
+
+        for i, v in enumerate(values):
+            plt.text(i, v + 0.1, str(v), ha="center", fontsize=12, fontweight = "bold")
+            
+        plt.xlabel('Where The Goal Was Scored')
+        plt.ylabel('Number of Goals')
+        plt.title(f'Total Home vs Away Goals for {requested_team} in {requested_year}')
+        plt.show()
 
     
 
