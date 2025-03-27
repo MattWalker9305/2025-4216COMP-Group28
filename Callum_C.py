@@ -65,10 +65,11 @@ def callum_C1():
             plt.pie(values, labels=labels, autopct='%1.1f%%', colors=['blue', 'red'], startangle=90)
             plt.title(f'Percentage of Home vs Away Goals')
 
+            plt.tight_layout()
             plt.show()
 
         
-
+    
             print(pd.Series(homeGoals).cumsum())
             print(pd.Series(awayGoals).cumsum())
 
