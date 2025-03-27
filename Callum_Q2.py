@@ -50,9 +50,13 @@ with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
             df["Date"] = pd.to_datetime(df["Date"])
             df = df.sort_values("Date")
 
+            average_conversion_rate = sum(shot_conversion_rate) / len(shot_conversion_rate)
+
             fig, ax = plt.subplots(figsize=(10, 5))
 
             ax.plot(df["Date"], df["Shot Conversion Rate"], "bo-", label="Shot Conversion Rate")
+
+            ax.axhline(y=average_conversion_rate, color='r', linestyle='--', label=f"Average Shot Conversion Rate: {average_conversion_rate:.2f}%")
 
             fig.suptitle(f"Shot Conversion Rate for {requested_team} in {requested_year}", fontsize=20)
             ax.set_title("Shot Conversion Over Time", fontsize=14)
