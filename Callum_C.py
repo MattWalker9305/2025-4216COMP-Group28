@@ -7,7 +7,7 @@ def callum_C1():
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
-    with open("datasets/teams.csv", "r") as f:
+    with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
         csv_reader = csv.reader(f)
         next(csv_reader)
         for row in csv_reader:
@@ -24,7 +24,7 @@ def callum_C1():
             homeGoals = []
             awayGoals = []
 
-            with open("datasets/games.csv", "r") as f:
+            with open("2025-4216COMP-Group28/datasets/games.csv", "r") as f:
                 games = csv.reader(f)
                 next(games)
 
@@ -36,31 +36,41 @@ def callum_C1():
                     season = row[2]
                     if home_team_id == team_id and requested_year == season:
                         homeGoals.append(home_goals)
-                    elif away_team_id==team_id and requested_year==season:
+                    elif away_team_id == team_id and requested_year==season:
                         awayGoals.append(away_goals)
 
             total_home_goals = sum(homeGoals)
             total_away_goals = sum(awayGoals)
 
         
-        # Create bar chart
+            #bar chart
             labels = ['Goals Scored At Home', 'Goals Scored Away']
             values = [total_home_goals, total_away_goals]
             
+            plt.figure(figsize=(10, 5))
+            plt.subplot(1, 2, 1)
             plt.bar(labels, values, color=['blue', 'red'])
+            
 
             for i, v in enumerate(values):
-                plt.text(i, v + 0.1, str(v), ha="center", fontsize=12, fontweight = "bold")
+                plt.text(i, v + 0.1, str(v), ha = "center", fontsize = 12, fontweight = "bold")
                 
             plt.xlabel('Where The Goal Was Scored')
             plt.ylabel('Number of Goals')
             plt.title(f'Total Home vs Away Goals for {requested_team} in {requested_year}')
+
+
+            #pie chart
+            plt.subplot(1, 2, 2)
+            plt.pie(values, labels=labels, autopct='%1.1f%%', colors=['blue', 'red'], startangle=90)
+            plt.title(f'Percentage of Home vs Away Goals')
+
             plt.show()
 
         
 
-    print(pd.Series(homeGoals).cumsum())
-    print(pd.Series(awayGoals).cumsum())
+            print(pd.Series(homeGoals).cumsum())
+            print(pd.Series(awayGoals).cumsum())
 
                     
                     
