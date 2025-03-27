@@ -58,16 +58,16 @@ with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
 
             ax.axhline(y=average_conversion_rate, color='r', linestyle='--', label=f"Average Shot Conversion Rate: {average_conversion_rate:.2f}%")
 
-            fig.suptitle(f"Shot Conversion Rate for {requested_team} in {requested_year}", fontsize=20)
-            ax.set_title("Shot Conversion Over Time", fontsize=14)
-            ax.set_xlabel("Date", fontsize=12)
-            ax.set_ylabel("Shot Conversion Rate (%)", fontsize=12)
+            fig.suptitle(f"Shot Conversion Rate for {requested_team} in {requested_year}", fontsize = 20)
+            ax.set_title("Shot Conversion Over Time", fontsize = 14)
+            ax.set_xlabel("Date", fontsize = 12)
+            ax.set_ylabel("Shot Conversion Rate (%)", fontsize = 12)
 
             ax.set_xticks(df["Date"])  
             ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%m-%Y"))  
-            plt.xticks(rotation=90, ha="right", fontsize = 8) 
+            plt.xticks(rotation = 90, ha = "right", fontsize = 8) 
 
-            fig.subplots_adjust(top=0.85, bottom=0.2)
+            fig.subplots_adjust(top = 0.85, bottom = 0.2)
 
             ax.grid(True)
             ax.legend()
