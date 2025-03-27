@@ -30,8 +30,8 @@ with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
             for row in team_stats:
                 current_team_id = row[1]
                 season = row[2]
-                shots = row[7]
-                goals = row[5]
+                shots = int(row[7])
+                goals = int(row[5])
                 date = row[3]
             if current_team_id == team_id and requested_year == season:
                 if shots > 0:
