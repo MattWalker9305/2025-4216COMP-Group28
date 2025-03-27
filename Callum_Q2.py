@@ -61,9 +61,12 @@ with open("2025-4216COMP-Group28/datasets/teams.csv", "r") as f:
 
             ax.set_xticks(df["Date"])  
             ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%m-%Y"))  
-            plt.xticks(rotation=90, ha="right") 
+            plt.xticks(rotation=90, ha="right", fontsize = 8) 
 
             fig.subplots_adjust(top=0.85, bottom=0.2)
+
+            ax.grid(True)
+            ax.legend()
 
             plt.show()
         
