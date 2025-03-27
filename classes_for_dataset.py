@@ -96,6 +96,7 @@ class Player:
     playerID: str
     name: str
 
+@dataclass
 class Shot:
     gameID: str
     shooterID: str
