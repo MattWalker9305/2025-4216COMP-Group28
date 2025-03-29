@@ -44,6 +44,7 @@ def team_season_points():
         ax.set_title(f"Points scored by {selected_team} over a season")
         ax.set_xlabel('Date')
         ax.set_ylabel('Points')
-
+        
         print(data)
+        plt.legend(['Points scored at certain date'], loc='upper left')
         plt.show()
