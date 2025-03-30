@@ -48,3 +48,15 @@ def team_season_points():
         print(data)
         plt.legend(['Points scored at certain date'], loc='upper left')
         plt.show()
+        
+def player_xG_VS_G():
+    selected_season = int(input("Enter a season (2015-2020):"))
+    
+    appearances = cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance)
+    games = cfd.read_file_to_array('datasets/games.csv', cfd.Game)
+    players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
+        
+    games = [game for game in games if int(game.season) == selected_season]
+    for game in games: print(game.gameID)
+    
+player_xG_VS_G() 
