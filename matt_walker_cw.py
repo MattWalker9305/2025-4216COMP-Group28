@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import classes_for_dataset as cfd
+import bisect
 
 def team_season_points():
     team_not_found = True
@@ -50,13 +51,18 @@ def team_season_points():
         plt.show()
         
 def player_xG_VS_G():
-    selected_season = int(input("Enter a season (2015-2020):"))
+    selected_season = int(input("Enter a season (2014-2020):"))
     
     appearances = cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance)
-    games = cfd.read_file_to_array('datasets/games.csv', cfd.Game)
+    games = sorted(cfd.read_file_to_array('datasets/games.csv', cfd.Game), key=lambda game: int(game.season))
     players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
+    
+    seasons = [int(game.season) for game in games]
+
+    first_index = bisect.bisect_left(seasons, selected_season)
+    last_index = bisect.bisect_right(seasons, selected_season)
         
-    games = [game for game in games if int(game.season) == selected_season]
+    games = games[first_index:last_index]
     for game in games: print(game.gameID)
     
 player_xG_VS_G() 
