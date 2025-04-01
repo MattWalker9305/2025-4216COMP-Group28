@@ -53,16 +53,20 @@ def team_season_points():
 def player_xG_VS_G():
     selected_season = int(input("Enter a season (2014-2020):"))
     
-    appearances = cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance)
+    
     games = sorted(cfd.read_file_to_array('datasets/games.csv', cfd.Game), key=lambda game: int(game.season))
-    players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
     
     seasons = [int(game.season) for game in games]
 
     first_index = bisect.bisect_left(seasons, selected_season)
     last_index = bisect.bisect_right(seasons, selected_season)
-        
+    seasons = []
+
     games = games[first_index:last_index]
-    for game in games: print(game.gameID)
+
+    players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
+    appearances = [appearance for appearance in cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance) if appearance.gameID in games]
+
     
-player_xG_VS_G() 
+
+player_xG_VS_G()
