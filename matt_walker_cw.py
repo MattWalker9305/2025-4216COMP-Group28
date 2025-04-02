@@ -1,8 +1,9 @@
+import time
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import classes_for_dataset as cfd
-import bisect
+from collections import defaultdict
 
 def team_season_points():
     team_not_found = True
@@ -52,25 +53,47 @@ def team_season_points():
         
 def player_xG_VS_G():
     selected_season = int(input("Enter a season (2014-2020):"))
-    
-    
-    games = sorted(cfd.read_file_to_array('datasets/games.csv', cfd.Game), key=lambda game: int(game.season))
-    
-    seasons = [int(game.season) for game in games]
-
-    first_index = bisect.bisect_left(seasons, selected_season)
-    last_index = bisect.bisect_right(seasons, selected_season)
-    seasons = []
-
-    games = games[first_index:last_index]
-
+    games = cfd.read_file_to_array('datasets/games.csv', cfd.Game, filter_func=lambda row: int(row['season']) == selected_season)
+    game_ids = []
+    for game in games: game_ids.append(game.gameID)
     players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
-    appearances = [appearance for appearance in cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance) if appearance.gameID in games]
-
-    best_player_performance = []
+    appearances = cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance, filter_func=lambda row: row['gameID'] in game_ids)
+    
+    player_groups = defaultdict(list)
     for appearance in appearances:
-        goal_conversion = appearance.goals/appearance.xGoals
-        if(goal_conversion > best_player_performance.goal_conversion):
-            best_player_performance.append(appearance.playerID, goal_conversion)
+        player_groups[appearance.playerID].append(appearance)
 
-    for performance in best_player_performance: print(performance.playerID)
+    player_data = []
+    player_dict = {player.playerID: player.name for player in players}
+
+    for player_id, appearances in player_groups.items():
+        total_xG = sum([float(appearance.xGoals) for appearance in appearances])
+        total_goals = sum([int(appearance.goals) for appearance in appearances])
+
+        player_name = player_dict.get(player_id, "Unknown Player")
+
+        player_data.append({
+            'playerID': player_id,
+            'playerName': player_name,
+            'total_xG': total_xG,
+            'total_goals': total_goals
+        })
+    
+    data = pd.DataFrame(player_data)
+    print(data)
+
+    top_players = data.sort_values(by='total_xG', ascending=False).head(10)
+    fig, ax = plt.subplots()
+    ax.scatter(data['total_xG'], data['total_goals'])
+    ax.scatter(top_players['total_xG'], top_players['total_goals'], color = 'red')
+
+    for i, row in top_players.iterrows():
+        ax.text(row['total_xG'], row['total_goals'], row['playerName'], fontsize=8)
+
+    ax.set_xlim([min(data['total_xG']) - 1, max(data['total_xG']) + 1])
+    ax.set_ylim([min(data['total_goals']) - 1, max(data['total_goals']) + 1])
+
+    ax.set_xlabel("Players total expected goals")
+    ax.set_ylabel("Players total goals")
+    ax.set_title(f"xG vs Goals for players in {selected_season}")
+    plt.show()

@@ -8,7 +8,7 @@ def callum_C1():
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
-    teams = cfd.read_file_to_array('2025-4216COMP-Group28/datasets/teams.csv', cfd.Team)
+    teams = cfd.read_file_to_array('datasets/teams.csv', cfd.Team)
     for row in teams:
         if row.name == requested_team:
             team_id = row.teamID
@@ -21,7 +21,7 @@ def callum_C1():
             homeGoals = []
             awayGoals = []
 
-            games = cfd.read_file_to_array('2025-4216COMP-Group28\datasets\games.csv', cfd.Game)
+            games = cfd.read_file_to_array('datasets\games.csv', cfd.Game)
                 
 
             for row in games:
