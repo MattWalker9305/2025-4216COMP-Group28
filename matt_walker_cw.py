@@ -1,8 +1,9 @@
+import time
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import classes_for_dataset as cfd
-import bisect
+from collections import defaultdict
 
 def team_season_points():
     team_not_found = True
@@ -52,25 +53,23 @@ def team_season_points():
         
 def player_xG_VS_G():
     selected_season = int(input("Enter a season (2014-2020):"))
-    
-    
-    games = sorted(cfd.read_file_to_array('datasets/games.csv', cfd.Game), key=lambda game: int(game.season))
-    
-    seasons = [int(game.season) for game in games]
-
-    first_index = bisect.bisect_left(seasons, selected_season)
-    last_index = bisect.bisect_right(seasons, selected_season)
-    seasons = []
-
-    games = games[first_index:last_index]
-
+    #start_time=time.time()
+    games = cfd.read_file_to_array('datasets/games.csv', cfd.Game, filter_func=lambda row: int(row['season']) == selected_season)
+    game_ids = []
+    for game in games: game_ids.append(game.gameID)
     players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
-    appearances = [appearance for appearance in cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance) if appearance.gameID in games]
-
-    best_player_performance = []
+    appearances = cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance, filter_func=lambda row: row['gameID'] in game_ids)
+    
+    player_groups = defaultdict(list)
     for appearance in appearances:
-        goal_conversion = appearance.goals/appearance.xGoals
-        if(goal_conversion > best_player_performance.goal_conversion):
-            best_player_performance.append(appearance.playerID, goal_conversion)
+        player_groups[appearance.playerID].append(appearance)
 
-    for performance in best_player_performance: print(performance.playerID)
+
+    data = pd.DataFrame.from_dict(player_groups, orient='index')
+    print(data)
+            
+    #end_time=time.time()
+    #print(f"done {end_time - start_time:.6f} seconds" )
+
+    # for performance in best_player_performance: print(performance.playerID)
+player_xG_VS_G()
