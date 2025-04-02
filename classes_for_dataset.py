@@ -127,8 +127,33 @@ class Shot:
 #!!!DO NOT ALTER CODE BELOW!!!
 #
 
-def read_file_to_array(file_path:str, requested_class:object):
+def read_file_to_array(file_path:str, requested_class:object, filter_func=None, sort_key = None, requested_fields = None):
+    
     with open(file_path, 'r') as f:
         csv_reader = csv.DictReader(f)
-        array = [requested_class(**row) for row in csv_reader]
+
+        requested_fields = requested_fields or [field for field in requested_class.__annotations__.keys()]
+
+
+        def convert_row(row):
+            new_row = {}
+            for field, field_type in requested_class.__annotations__.items():
+                if field in requested_fields:
+                    value = row[field]
+
+                    if field_type == int:
+                        new_row[field] = int(value) if value.isdigit() else 0
+                    elif field_type == float:
+                        new_row[field] = float(value) if value.isdigit() else 0.0
+                    elif field_type == dt.datetime:
+                        new_row[field] = dt.datetime.strptime(value,"%Y-%m-%d %H:%M:%S") if value else None
+                    else :
+                        new_row[field] = value
+            return requested_class(**new_row)
+
+        array = [convert_row(row) for row in csv_reader if not filter_func or filter_func(row)]
+    
+    if sort_key:
+        array.sort(key=sort_key)
+    
     return array
