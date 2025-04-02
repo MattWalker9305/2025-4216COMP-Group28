@@ -144,7 +144,7 @@ def read_file_to_array(file_path:str, requested_class:object, filter_func=None, 
                     if field_type == int:
                         new_row[field] = int(value) if value.isdigit() else 0
                     elif field_type == float:
-                        new_row[field] = float(value) if value.isdigit() else 0.0
+                        new_row[field] = float(value) if value.replace('.', '', 1).isdigit() else 0.0
                     elif field_type == dt.datetime:
                         new_row[field] = dt.datetime.strptime(value,"%Y-%m-%d %H:%M:%S") if value else None
                     else :
