@@ -14,6 +14,7 @@ while menu_choice:
                        "\n2.) team home and away goals scored in a season"
                        "\n3.) Player goals over a season"
                        "\n4.) Shot conversion rate for teams in a season"
+                       "\n5.) Player xG vs G"
                        "\n0.) exit"
                        "\nchoose application: "))
 
@@ -29,3 +30,5 @@ while menu_choice:
             ShaunQ1.ShaunQ1Program()
         case 4:
             Callum_Q2.callum_C2()
+        case 5:
+            mw.player_xG_VS_G()
