@@ -67,6 +67,10 @@ def player_xG_VS_G():
     players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
     appearances = [appearance for appearance in cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance) if appearance.gameID in games]
 
-    
+    best_player_performance = []
+    for appearance in appearances:
+        goal_conversion = appearance.goals/appearance.xGoals
+        if(goal_conversion > best_player_performance.goal_conversion):
+            best_player_performance.append(appearance.playerID, goal_conversion)
 
-player_xG_VS_G()
+    for performance in best_player_performance: print(performance.playerID)
