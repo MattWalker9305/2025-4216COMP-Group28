@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import classes_for_dataset as cfd
+import bisect
 
 def team_season_points():
     team_not_found = True
@@ -44,6 +45,32 @@ def team_season_points():
         ax.set_title(f"Points scored by {selected_team} over a season")
         ax.set_xlabel('Date')
         ax.set_ylabel('Points')
-
+        
         print(data)
+        plt.legend(['Points scored at certain date'], loc='upper left')
         plt.show()
+        
+def player_xG_VS_G():
+    selected_season = int(input("Enter a season (2014-2020):"))
+    
+    
+    games = sorted(cfd.read_file_to_array('datasets/games.csv', cfd.Game), key=lambda game: int(game.season))
+    
+    seasons = [int(game.season) for game in games]
+
+    first_index = bisect.bisect_left(seasons, selected_season)
+    last_index = bisect.bisect_right(seasons, selected_season)
+    seasons = []
+
+    games = games[first_index:last_index]
+
+    players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
+    appearances = [appearance for appearance in cfd.read_file_to_array('datasets/appearances.csv', cfd.Appearance) if appearance.gameID in games]
+
+    best_player_performance = []
+    for appearance in appearances:
+        goal_conversion = appearance.goals/appearance.xGoals
+        if(goal_conversion > best_player_performance.goal_conversion):
+            best_player_performance.append(appearance.playerID, goal_conversion)
+
+    for performance in best_player_performance: print(performance.playerID)
