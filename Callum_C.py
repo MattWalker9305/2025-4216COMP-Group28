@@ -21,7 +21,11 @@ def callum_C1():
             homeGoals = []
             awayGoals = []
 
+<<<<<<< HEAD
+            games = cfd.read_file_to_array('datasets/games.csv', cfd.Game)
+=======
             games = cfd.read_file_to_array('datasets\games.csv', cfd.Game)
+>>>>>>> eb1965f86e96208af038c53df64139af7771d908
                 
 
             for row in games:
