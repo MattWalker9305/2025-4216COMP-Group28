@@ -2,6 +2,7 @@ import matt_walker_cw as mw
 import Callum_C
 import ShaunQ1
 import Callum_Q2
+import ShaunQ2
 import os
 
 menu_choice = True
@@ -15,6 +16,7 @@ while menu_choice:
                        "\n3.) Player goals over a season"
                        "\n4.) Shot conversion rate for teams in a season"
                        "\n5.) Player xG vs G"
+                       "\n6.) Each type of goal scored in a league over a season"
                        "\n0.) exit"
                        "\nchoose application: "))
 
@@ -32,3 +34,5 @@ while menu_choice:
             Callum_Q2.callum_C2()
         case 5:
             mw.player_xG_VS_G()
+        case 6:
+            ShaunQ2.ShaunQ2Program()
