@@ -33,5 +33,8 @@ def ShaunQ2Program():
     rightGoalsLen = len(rightGoals)
 
     slices = [headGoalsLen, leftGoalsLen, rightGoalsLen]
-    plt.pie(slices)
+    labels = ['Header', 'Left foot', 'Right foot']
+    plt.pie(slices, labels=labels, autopct='%1.1f%%')
+    plt.title('Types of goals scored over a season')
+
     plt.show()
