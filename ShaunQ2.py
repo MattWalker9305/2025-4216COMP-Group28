@@ -16,7 +16,6 @@ def ShaunQ2Program():
     gameIDs = []
     for game in games: gameIDs.append(game.gameID)
     goals = cfd.read_file_to_array('datasets/shots.csv', cfd.Shot, filter_func=lambda row: row['shotResult'] == 'Goal' and row['gameID'] in gameIDs)
-    goalslen = len(goals)
 
     headGoals = []
     leftGoals = []
