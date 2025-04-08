@@ -35,5 +35,3 @@ def ShaunQ2Program():
     slices = [headGoalsLen, leftGoalsLen, rightGoalsLen]
     plt.pie(slices)
     plt.show()
-
-ShaunQ2Program()
