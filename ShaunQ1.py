@@ -37,4 +37,7 @@ def ShaunQ1Program():
     y_values = cumulativeGoals
 
     plt.plot(x_values, y_values)
+    plt.title(chosenPlayer + "'s" + " goals over the " + chosenSeason + " season")
+    plt.xlabel("Number of games")
+    plt.ylabel("Number of goals")
     plt.show()
