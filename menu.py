@@ -6,7 +6,6 @@ import ShaunQ2
 import os
 
 menu_choice = True
-
 while menu_choice:
 
     os.system('cls')
