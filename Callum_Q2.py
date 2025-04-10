@@ -13,9 +13,8 @@ def callum_C2():
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
-#creating an array of all the teams
-    teams = cfd.read_file_to_array('2025-4216COMP-Group28/datasets/teams.csv', cfd.Team)
-
+    teams = cfd.read_file_to_array('datasets/teams.csv', cfd.Team)
+  
     #searching throught the array to find teamIDs
     for row in teams:
         if row.name == requested_team:
@@ -29,7 +28,7 @@ def callum_C2():
             shot_conversion_rate = [] #Creates empty lists
 
         
-            team_stats = cfd.read_file_to_array('2025-4216COMP-Group28/datasets/teamstats.csv', cfd.TeamStatistic)
+            team_stats = cfd.read_file_to_array('datasets/teamstats.csv', cfd.TeamStatistic)
             for row in team_stats:
     
                     if row.teamID == team_id and requested_year == row.season:

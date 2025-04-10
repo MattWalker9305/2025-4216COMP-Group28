@@ -12,9 +12,9 @@ def callum_C1():
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
-#creating an array of all the teams
-    teams = cfd.read_file_to_array('2025-4216COMP-Group28/datasets/teams.csv', cfd.Team)
 
+    #creating an array of all the teams
+    teams = cfd.read_file_to_array('datasets/teams.csv', cfd.Team)
     #searching throught the array to find teamIDs
     for row in teams:
         if row.name == requested_team:
@@ -29,11 +29,10 @@ def callum_C1():
             homeGoals = []
             awayGoals = [] #empty lists created
 
-            games = cfd.read_file_to_array('2025-4216COMP-Group28\datasets\games.csv', cfd.Game)
-                
-#checks if teamId and year match the away or home team
+            games = cfd.read_file_to_array('datasets\games.csv', cfd.Game)
+  
+            #checks if teamId and year match the away or home team
             for row in games:
-                   
                     if row.homeTeamID == team_id and requested_year == row.season:
                         homeGoals.append(row.homeGoals)
                     elif row.awayTeamID == team_id and requested_year == row.season:

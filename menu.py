@@ -2,29 +2,44 @@ import matt_walker_cw as mw
 import Callum_C
 import ShaunQ1
 import Callum_Q2
+import ShaunQ2
+import MariaQ1
+import MariaQ2
 import os
 
 menu_choice = True
-
 while menu_choice:
 
     os.system('cls')
-    choice = int(input("1.) exit"
-                       "\n2.) team points over a season"
-                       "\n3.) team home and away goals scored in a season"
-                       "\n4.) Player goals over a season"
-                       "\n5.) Shot conversion rate for teams in a season"
-                       "\nchoose application: "))
+    choice = input("Enter a number to choose one of the below applictaions"
+                       "\n1.) team points over a season"
+                       "\n2.) team home and away goals scored in a season"
+                       "\n3.) Player goals over a season"
+                       "\n4.) Shot conversion rate for teams in a season"
+                       "\n5.) Player xG vs G"
+                       "\n6.) Each type of goal scored in a league over a season"
+                       "\n7.) Shot results by situation"
+                       "\n8.) Team discipline(Yellow and Red Cards)"
+                       "\n0.) exit"
+                       "\nchoose application: ")
 
     match choice:
-        case 1:
+        case "0":
             menu_choice = False
             exit
-        case 2:
+        case "1":
             mw.team_season_points()
-        case 3:
+        case "2":
             Callum_C.callum_C1()
-        case 4:
+        case "3":
             ShaunQ1.ShaunQ1Program()
-        case 5:
+        case "4":
             Callum_Q2.callum_C2()
+        case "5":
+            mw.player_xG_VS_G()
+        case "6":
+            ShaunQ2.ShaunQ2Program()
+        case "7":
+            MariaQ1.MariaQ1Program()
+        case "8":
+            MariaQ2.MariaQ2Program()
