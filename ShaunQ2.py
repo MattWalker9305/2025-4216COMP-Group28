@@ -7,7 +7,7 @@ import time
 def ShaunQ2Program():
 #getting inputs from user
     chosenLeague = input("Enter league: ")
-    chosenSeason = input("Enter season: ")
+    chosenSeason = input("Enter season (2014-2020): ")
 
 #validation 
     leagueNotFound = True
@@ -29,6 +29,7 @@ def ShaunQ2Program():
         gameIDs.append(game.gameID)
         seasonNotFound = False
 
+#Telling the user if there is an invalid input
     if leagueNotFound == True:
         print("League not found")
         time.sleep(3)
@@ -63,3 +64,4 @@ def ShaunQ2Program():
         plt.title('Types of goals scored over a season')
 
         plt.show()
+

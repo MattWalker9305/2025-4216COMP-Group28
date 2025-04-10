@@ -8,7 +8,7 @@ import time
 def ShaunQ1Program():
 #getting input from user
     chosenPlayer = input("Players full name: ")
-    chosenSeason = input("Season: ")
+    chosenSeason = input("Season (2014-2020): ")
 
 #validation 
     playerNotFound = True
@@ -60,3 +60,4 @@ def ShaunQ1Program():
             plt.ylabel("Number of goals")
 
             plt.show()
+
