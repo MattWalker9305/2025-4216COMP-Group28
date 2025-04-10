@@ -10,7 +10,10 @@ import os
 menu_choice = True
 while menu_choice:
 
+    #Clear the terminal, enhance the readability 
     os.system('cls')
+
+    #Accept user input
     choice = input("Enter a number to choose one of the below applictaions"
                        "\n1.) team points over a season"
                        "\n2.) team home and away goals scored in a season"
@@ -22,9 +25,10 @@ while menu_choice:
                        "\n8.) Team discipline(Yellow and Red Cards)"
                        "\n0.) exit"
                        "\nchoose application: ")
-
+    #Match user input to menu number, repeat menu if none found.
     match choice:
         case "0":
+            #Quit menu when chosen
             menu_choice = False
             exit
         case "1":
