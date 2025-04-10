@@ -8,23 +8,15 @@ def ShaunQ1Program():
 #getting input from user
     chosenPlayer = input("Players full name: ")
     chosenSeason = input("Season: ")
-
-<<<<<<< HEAD
+    
 #getting the player ID of the chosen player
-=======
-    import csv
->>>>>>> bb553c0618ec4bbdc0d90e49e4195faabab74ceb
     players = cfd.read_file_to_array('datasets/players.csv',cfd.Player)
     for player in players:
         if chosenPlayer == player.name:
             playerID = player.playerID
             break
-<<<<<<< HEAD
 
 #getting game ID's from users chosen season   
-=======
-        
->>>>>>> bb553c0618ec4bbdc0d90e49e4195faabab74ceb
     gameIDs = []
     games = cfd.read_file_to_array('datasets/games.csv', cfd.Game)
     for game in games:
