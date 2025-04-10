@@ -10,7 +10,17 @@ def team_season_points():
 
     #taking user inputs 
     selected_team = input("Enter team: ")
-    selected_year = input("Enter season: ")
+    selected_year = 0
+
+    while True:
+        try:
+            selected_year = int(input("Enter season: "))
+            if 2014 <= selected_year <= 2020:
+                break
+            else:
+                 print("value not within valid range")
+        except ValueError:
+            print("Value entered was not an interger")
 
     #creating an array of all the teams in team.csv
     teams = cfd.read_file_to_array("datasets/teams.csv", cfd.Team)
@@ -29,7 +39,7 @@ def team_season_points():
     else:
         match_results = []
         #creating array of team statistics where its the selected team and in the selected season
-        team_statistics = cfd.read_file_to_array("datasets/teamstats.csv", cfd.TeamStatistic, filter_func=lambda team_statistic: team_statistic['teamID'] == selected_team_id and team_statistic['season'] == selected_year)
+        team_statistics = cfd.read_file_to_array("datasets/teamstats.csv", cfd.TeamStatistic, filter_func=lambda team_statistic: team_statistic['teamID'] == selected_team_id and int(team_statistic['season']) == selected_year)
         for team_statistic in team_statistics:
                 #adding the date and result of each match to the match result array
                 match_results.append((team_statistic.date, team_statistic.result))
@@ -68,7 +78,15 @@ def team_season_points():
         
 def player_xG_VS_G():
     #user integer input
-    selected_season = int(input("Enter a season (2014-2020):"))
+    while True:
+        try:
+            selected_season = int(input("Enter a season (2014-2020):"))
+            if 2014 <= selected_season <= 2020:
+                break
+            else:
+                 print("Value not within valid range")
+        except ValueError:
+            print("Value entered was not an interger")
     #create an array of all games matching the requested sesaon
     games = cfd.read_file_to_array('datasets/games.csv', cfd.Game, filter_func=lambda game: int(game['season']) == selected_season)
     game_ids = []
