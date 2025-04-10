@@ -3,6 +3,7 @@ import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import classes_for_dataset as cfd
+import time
 
 #defined function
 def callum_C1():
@@ -24,7 +25,7 @@ def callum_C1():
 
 #response if no team matched
     if team_not_found:
-            print("no team found")
+            print("no team found").time.sleep(5)
     else:
             homeGoals = []
             awayGoals = [] #empty lists created
