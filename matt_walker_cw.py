@@ -20,8 +20,9 @@ def team_season_points():
             else:
                  print("value not within valid range")
         except ValueError:
-            print("Value entered was not an interger")
+            print("Value entered was not an integer")
 
+    #start = time.time()
     #creating an array of all the teams in team.csv
     teams = cfd.read_file_to_array("datasets/teams.csv", cfd.Team)
     #looping through each team in array teams
@@ -74,6 +75,8 @@ def team_season_points():
         
         ax.grid(True)
         #output visualisation
+        #end = time.time()
+        #print(end-start)
         plt.show()
         
 def player_xG_VS_G():
@@ -86,8 +89,9 @@ def player_xG_VS_G():
             else:
                  print("Value not within valid range")
         except ValueError:
-            print("Value entered was not an interger")
+            print("Value entered was not an integer")
     #create an array of all games matching the requested sesaon
+    #start = time.time()
     games = cfd.read_file_to_array('datasets/games.csv', cfd.Game, filter_func=lambda game: int(game['season']) == selected_season)
     game_ids = []
     # add the game id of all games in the games array to game_ids
@@ -145,5 +149,7 @@ def player_xG_VS_G():
     ax.set_ylabel("Players total goals")
     ax.set_title(f"xG vs Goals for players in {selected_season}")
     plt.legend(['Goals scored vs xG for each player', 'Top preforming players, based on XG'], loc='upper left')
+    #end = time.time()
+    #print(end-start)
     #display visualisation
     plt.show()
