@@ -49,6 +49,7 @@ def team_season_points():
         
         print(data)
         plt.legend(['Points scored at certain date'], loc='upper left')
+        ax.grid(True)
         plt.show()
         
 def player_xG_VS_G():
@@ -96,4 +97,5 @@ def player_xG_VS_G():
     ax.set_xlabel("Players total expected goals")
     ax.set_ylabel("Players total goals")
     ax.set_title(f"xG vs Goals for players in {selected_season}")
+    
     plt.show()
