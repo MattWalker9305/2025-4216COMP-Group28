@@ -1,23 +1,28 @@
-import pandas as pd
-import csv
+#making imports
 import classes_for_dataset as cfd
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
-
+#creating funtion for the menu to import 
 def ShaunQ2Program():
+#getting inputs from user
     chosenLeague = input("Enter league: ")
     chosenSeason = int(input("Enter season: "))
 
+#getting the league ID of users chosen league
     leagues = cfd.read_file_to_array('datasets/leagues.csv', cfd.League, filter_func=lambda row: row['name'] == chosenLeague)
     leagueIDs = []
+#appending chosen league ID into array
     for league in leagues: leagueIDs.append(league.leagueID)
+#taking all of the games from the chosen league and season
     games = cfd.read_file_to_array('datasets/games.csv', cfd.Game, filter_func=lambda row: int(row['season']) == chosenSeason and row['leagueID'] in leagueIDs)
 
+#taking game ID's from all of the games 
     gameIDs = []
     for game in games: gameIDs.append(game.gameID)
+#putting goals from all of the games into array
     goals = cfd.read_file_to_array('datasets/shots.csv', cfd.Shot, filter_func=lambda row: row['shotResult'] == 'Goal' and row['gameID'] in gameIDs)
-    goalslen = len(goals)
 
+#sorting types of goals into their groups
     headGoals = []
     leftGoals = []
     rightGoals = []
@@ -28,10 +33,12 @@ def ShaunQ2Program():
             rightGoals.append(goal)
         elif goal.shotType == 'LeftFoot':
             leftGoals.append(goal)
+#using len() to see how many of each type of goal there is
     headGoalsLen = len(headGoals)
     leftGoalsLen = len(leftGoals)
     rightGoalsLen = len(rightGoals)
 
+#creating and plotting pie chart with title and labels 
     slices = [headGoalsLen, leftGoalsLen, rightGoalsLen]
     labels = ['Header', 'Left foot', 'Right foot']
     plt.pie(slices, labels=labels, autopct='%1.1f%%')
