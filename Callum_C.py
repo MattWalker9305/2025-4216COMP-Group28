@@ -1,27 +1,38 @@
+#Imports
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import classes_for_dataset as cfd
+import time
+
+#defined function
 def callum_C1():
     team_not_found = True
 
+#request user inputs
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
+
+    #creating an array of all the teams
     teams = cfd.read_file_to_array('datasets/teams.csv', cfd.Team)
+    #searching throught the array to find teamIDs
     for row in teams:
         if row.name == requested_team:
             team_id = row.teamID
             team_not_found = False
             break
 
+#response if no team matched
     if team_not_found:
-            print("no team found")
+            print("no team found").time.sleep(5)
     else:
             homeGoals = []
-            awayGoals = []
+            awayGoals = [] #empty lists created
 
             games = cfd.read_file_to_array('datasets\games.csv', cfd.Game)
+  
+            #checks if teamId and year match the away or home team
             for row in games:
                     if row.homeTeamID == team_id and requested_year == row.season:
                         homeGoals.append(row.homeGoals)

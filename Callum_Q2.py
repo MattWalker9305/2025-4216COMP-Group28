@@ -1,38 +1,43 @@
+#imports
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import classes_for_dataset as cfd
+import time
 
+#defined function to link to main menu
 def callum_C2():
     team_not_found = True
 
+#Request user input
     requested_team = input("Enter team:")
     requested_year = input("Enter year:")
 
-
     teams = cfd.read_file_to_array('datasets/teams.csv', cfd.Team)
+  
+    #searching throught the array to find teamIDs
     for row in teams:
         if row.name == requested_team:
             team_id = row.teamID
             team_not_found = False
             break
     if team_not_found:
-            print("no team found")
+            print("no team found").time.sleep(5)
     else:
             dates = []
-            shot_conversion_rate = []
+            shot_conversion_rate = [] #Creates empty lists
 
         
             team_stats = cfd.read_file_to_array('datasets/teamstats.csv', cfd.TeamStatistic)
             for row in team_stats:
     
                     if row.teamID == team_id and requested_year == row.season:
-                        if int(row.shots) > 0:
+                        if int(row.shots) > 0: #Checks shots is greater than 0 to avoid division by 0 error
                             dates.append(row.date)
-                            shot_conversion_rate.append(float(row.goals) / float(row.shots) * 100)
+                            shot_conversion_rate.append(float(row.goals) / float(row.shots) * 100) #Calculates shot conversion rate
 
-            
+            #create a dataframe
             if dates:
                 df = pd.DataFrame({"Date": dates, "Shot Conversion Rate": shot_conversion_rate})
                 df["Date"] = pd.to_datetime(df["Date"])
@@ -40,6 +45,7 @@ def callum_C2():
 
                 average_conversion_rate = sum(shot_conversion_rate) / len(shot_conversion_rate)
 
+#Plotting/creating visualiation
                 fig, ax = plt.subplots(figsize=(10, 5))
 
                 ax.plot(df["Date"], df["Shot Conversion Rate"], "bo-", label="Shot Conversion Rate")
@@ -57,6 +63,7 @@ def callum_C2():
 
                 fig.subplots_adjust(top = 0.85, bottom = 0.2)
 
+#format the visualisation
                 ax.grid(True)
                 ax.legend()
 
