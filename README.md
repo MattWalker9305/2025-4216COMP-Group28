@@ -10,3 +10,14 @@ When the user chooses this application, they will be asked for the full name of 
 
 ### Shaun Q2 (Types of goals over a season):
 When the user chooses this application, they will be asked for the league they would like to information for. Once this is entered they will be asked for the season they would like the stats for. This database has data from 2014 to 2020 so you must choose one of these. If invalid data is input then the user will be told what data was invalid before being sent back to the start of the menu. If valid data is entered then the pie chart of the types of goals over the season will be output.
+
+
+### Maria Q1 (Shot results by situation):
+When the user runs this visualisation, they will be prompted to enter a season between 2015 and 2020.
+Once a valid season is entered, the program filters the dataset to only include matches played during that season.
+It then extracts shot data, grouping each shot by its situation (such as open play, set piece, or penalty) and its result (goal, saved, blocked, etc.).A grouped bar chart will be generated to show how different shot situations lead to different outcomes.If the user enters an invalid season (e.g., a year outside the available range or in the wrong format), the program will notify them and exit cleanly, allowing for another attempt.
+
+### Maria Q2 (Team discipline(Yellow and Red Cards)):
+When the user selects this visualisation, they will be prompted to enter the name of the team they would like to analyse. After entering a valid team name, the program will filter the dataset to include only matches involving that team. The script will then calculate the total number of yellow and red cards the team received in each season (between 2014 and 2020). A stacked bar chart will be displayed, clearly showing the team's disciplinary record across the seasons.If the user inputs an invalid or misspelled team name, the program will display a helpful message and stop gracefully, allowing the user to restart.
+
+
