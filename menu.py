@@ -5,6 +5,8 @@ import Callum_Q2
 import ShaunQ2
 import MariaQ1
 import MariaQ2
+import JoeQ1
+import JoeQ2
 import os
 
 menu_choice = True
@@ -23,6 +25,8 @@ while menu_choice:
                        "\n6.) Each type of goal scored in a league over a season"
                        "\n7.) Shot results by situation"
                        "\n8.) Team discipline(Yellow and Red Cards)"
+                       "\n9.) Leagues Ranked by Goal Situation"
+                       "\n10.) Types of Shot per Player"
                        "\n0.) exit"
                        "\nchoose application: ")
     #Match user input to menu number, repeat menu if none found.
@@ -47,3 +51,7 @@ while menu_choice:
             MariaQ1.MariaQ1Program()
         case "8":
             MariaQ2.MariaQ2Program()
+        case "9":
+            JoeQ1.Joe_Q1()
+        case "10":
+            JoeQ2.Joe_Q2()
