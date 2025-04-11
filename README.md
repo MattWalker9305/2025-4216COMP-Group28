@@ -34,7 +34,7 @@ When the user selects this visualisation, they will be prompted to enter the nam
 ### Joe Q1 (Leagues Ranked by Goal Situation):
 If this option is chosen from the menu, the user is requested to input an option of 1 to 5, which is clearly displayed to them to each represent a different type of goal situation. These include corners, open play, direct freekicks, set pieces and penalties. Upon choosing an option the user is requested to input a year ranging from 2015 to 2019. After doing so the programme then displays a bar chart containing their selected data. They are then given the option to either close the programme or start again with a new choice of data.
 
-### Joe Q2 (Player Shots by Type):
+### Joe Q2 (Types of Shot per Player):
 If the user choose this option from the menu, they will be requested to input the name of any player that played within th available five leagues from 2015 to 2019. Upon entering a player name the programme will generate a well formatted pie chart that displays this chosen information. The user will then be given the option to either leave the programme of start the query again with a different player name.
 
 
