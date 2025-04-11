@@ -21,14 +21,14 @@ def Joe_Q2():
 
 #Load player table to read data and append variables
     
-    players = cfd.read_file_to_array('dataset/players.csv', cfd.Player)
+    players = cfd.read_file_to_array('datasets/players.csv', cfd.Player)
     for player in players:
         if player.name == Player:
             playersID.append(player.playerID)
 
 #Load shots table to read data and append variables
 
-    shots = cfd.read_file_to_array('dataset/shots.csv', cfd.Shot)
+    shots = cfd.read_file_to_array('datasets/shots.csv', cfd.Shot)
     for shot in shots:
         if shot.shooterID in playersID:
             typeShot.append(shot.shotType)
