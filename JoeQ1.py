@@ -35,19 +35,19 @@ def Joe_Q1():
     
 #Loads shot table to read data and append variables
     
-    shots = cfd.read_file_to_array('dataset/shots.csv', cfd.Shot)
+    shots = cfd.read_file_to_array('datasets/shots.csv', cfd.Shot)
     for shot in shots:
                 if goalSituation == shot.situation and shot.shotResult == 'Goal':
                     gamesID.append(shot.gameID)
 
 #Loads game table to read data and append variables
                     
-    games = cfd.read_file_to_array('dataset/games.csv', cfd.Game)
+    games = cfd.read_file_to_array('datasets/games.csv', cfd.Game)
     for game in games:
                 if game.gameID in gamesID and seasonEntered == game.season:
                     leaguesID.append(game.leagueID)
     
-    leagues = cfd.read_file_to_array('dataset/leagues.csv', cfd.League)
+    leagues = cfd.read_file_to_array('datasets/leagues.csv', cfd.League)
 
 #Counts total goals
 
