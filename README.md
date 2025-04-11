@@ -11,6 +11,17 @@ When the user chooses this application, they will be asked for the full name of 
 ### Shaun Q2 (Types of goals over a season):
 When the user chooses this application, they will be asked for the league they would like to information for. Once this is entered they will be asked for the season they would like the stats for. This database has data from 2014 to 2020 so you must choose one of these. If invalid data is input then the user will be told what data was invalid before being sent back to the start of the menu. If valid data is entered then the pie chart of the types of goals over the season will be output.
 
+### Matthew Q1 (Teams points over a season)
+On selection of this application the user will be asked to enter a team they would like to check and a season they would like to check. The dataset ranges from 2014-2020, if the progran find the data required then it will produce a visualisation showing the selcted teams points over the selected season. If it it cannot find the data it will either ask the user to re-enter the data or reset to the main menu.
+
+### Matthew Q2 (Players XG vs G)
+On selection of this application the user will be asked to enter a season they would like to check. The dataset ranges from 2014-2020, if the progran find the data required then it will produce a visualisation showing the selected season and all the players with their xG plotted against their goals. If it it cannot find the data it will either ask the user to re-enter the data or reset to the main menu.
+
+### Callum Q1 (A teams home and away goals in a season)
+On selection of this application the user will be asked to enter a team they would like to check and a season they would like to check. The dataset ranges from 2014-2020, if the progran find the data required then it will produce a visualisation showing the selcted teams home goals and away goals over the selected season. If it it cannot find the data it will either ask the user to re-enter the data or reset to the main menu.
+
+### Callum Q2 (Shot conversion rate for a team in a season)
+On selection of this application the user will be asked to enter a team they would like to check and a season they would like to check. The dataset ranges from 2014-2020, if the progran find the data required then it will produce a visualisation showing the selcted teams shot conversion rate for each game over the selected season. If it it cannot find the data it will either ask the user to re-enter the data or reset to the main menu.
 
 ### Maria Q1 (Shot results by situation):
 When the user runs this visualisation, they will be prompted to enter a season between 2015 and 2020.
