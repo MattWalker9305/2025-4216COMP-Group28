@@ -25,8 +25,8 @@ while menu_choice:
                        "\n6.) Each type of goal scored in a league over a season"
                        "\n7.) Shot results by situation"
                        "\n8.) Team discipline(Yellow and Red Cards)"
-                       "\n9.) Leagues Ranked by Goal Situation)"
-                       "\n10.) Types of Shot per Player)"
+                       "\n9.) Leagues Ranked by Goal Situation"
+                       "\n10.) Types of Shot per Player"
                        "\n0.) exit"
                        "\nchoose application: ")
     #Match user input to menu number, repeat menu if none found.

@@ -80,28 +80,3 @@ def Joe_Q1():
             exit()
         else:
             print ('Invalid Input Please Try Again')
-
-#Run programme
-
-Joe_Q1()
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-    
-    
